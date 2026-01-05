@@ -20,4 +20,19 @@ class Barber extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function variants()
+    {
+        return $this->belongsToMany(ServiceVariant::class, 'barber_variants', 'barber_id', 'service_variant_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

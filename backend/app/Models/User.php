@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
     ];
 
     /**
@@ -48,6 +49,36 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class,"user_roles","user_id","role_id");
+        return $this->belongsToMany(Role::class, "user_roles", "user_id", "role_id");
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function barber()
+    {
+        return $this->hasOne(Barber::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->roles()->where('name', 'admin')->exists();
+    }
+
+    public function isBarber(): bool
+    {
+        return $this->roles()->where('name', 'barber')->exits();
+    }
+
+    public function isCustomer(): bool
+    {
+        return $this->roles()->where('name', 'customer')->exits();
     }
 }
