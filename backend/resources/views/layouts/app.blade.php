@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'everyday') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,10 +22,13 @@
         <div class="flex-1 flex flex-col">
             {{-- Navbar --}}
             @include('admin.layouts.navbar')
-
+            
             {{-- Page Content --}}
-            <main class="flex-1 overflow-y-auto p-6">
-                @yield('content')
+            <main class="flex-1 overflow-y-auto p-6 ">
+                <h1 class="text-[35px] font-bold mb-5">Dashboard</h1>
+               {{-- <div class="h-full w-full bg-white rounded-lg shadow border border-gray-300 px-5 py-4"> --}}
+                 @yield('content')
+               {{-- </div> --}}
             </main>
         </div>
     </div>
